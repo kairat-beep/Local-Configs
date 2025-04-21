@@ -7,11 +7,12 @@ DOTFILES_DIR="$PWD"
 NVIM_SYS=~/.config/nvim/init.lua
 TMUX_SYS=~/.tmux.conf
 GNUPG_SYS=~/.gnupg/gpg-agent.conf
-
+GNUPG_CIPHER=~/.gnupg/gpg.conf
 # Repo config locations (relative to current dir)
 NVIM_REPO=$DOTFILES_DIR/nvim/init.lua
 TMUX_REPO=$DOTFILES_DIR/tmux/.tmux.conf
 GNUPG_REPO=$DOTFILES_DIR/gnupg/gpg-agent.conf
+GNUPG_CIPHER_REPO=$DOTFILES_DIR/gnupg/gpg.conf
 # Ensure necessary directories exist
 mkdir -p "$(dirname "$NVIM_SYS")"
 mkdir -p "$(dirname "$NVIM_REPO")"
@@ -24,6 +25,7 @@ sync_pull() {
   rsync -av --update "$NVIM_SYS" "$NVIM_REPO"
   rsync -av --update "$TMUX_SYS" "$TMUX_REPO"
   rsync -av --update "$GNUPG_SYS" "$GNUPG_REPO"
+  rsync -av --update "$GNUPG_CIPHER" "$GNUPG_CIPHER_REPO"
   echo "✅ Pull complete"
 }
 
@@ -32,6 +34,7 @@ sync_push() {
   rsync -av --update "$NVIM_REPO" "$NVIM_SYS"
   rsync -av --update "$TMUX_REPO" "$TMUX_SYS"
   rsync -av --update "$GNUPG_REPO" "$GNUPG_SYS"
+  rsync -av --update "$GNUPG_CIPHER_REPO" "$GNUPG_CIPHER"
   echo "✅ Push complete"
 }
 
